@@ -36,7 +36,7 @@ export const ReadBranches = async (req: Request, res: Response) => {
             ],
             status: "preparing",
             placedAt: "2025-06-12T12:35:00Z",
-            notes: "",
+            notes: "Bread must be over cooked",
           },
           {
             orderId: "ORD-1003",

@@ -12,7 +12,7 @@ export const ReadUsers = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(400).json({
       status: false,
-      message: "Failed to add user",
+      message: "Failed to read user",
       detail: error,
     });
   }

@@ -32,21 +32,21 @@ export const Auth = async (req: Request, res: Response) => {
           },
           secret,
           {
-            expiresIn: "5m",
+            // expiresIn: "5m",
             issuer: "server",
             subject: "client",
             header: { alg: "HS256", typ: "JWT" },
           }
         );
-        res.cookie("token", token, {
-          httpOnly: true,
-          sameSite: "none",
-          secure: true,
-        });
+        // res.cookie("token", token, {
+        //   httpOnly: true,
+        //   sameSite: "none",
+        //   secure: true,
+        // });
         res.status(200).json({
-          status: false,
+          status: true,
           message: "Successfully authenticate user",
-          detail: isUserExist,
+          detail: Object.assign(isUserExist, { token: token }),
         });
       } else {
         res.status(400).json({
