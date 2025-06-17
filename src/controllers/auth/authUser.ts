@@ -22,8 +22,12 @@ export const Auth = async (req: Request, res: Response) => {
         req.body.password,
         isUserExist.password
       );
+      console.log("decryptedPassword", decryptedPassword);
+      
       if (decryptedPassword) {
         let secret = process.env.JWTSECRET || "temporarySecret";
+      console.log("token gen");
+
         let token = jwt.sign(
           {
             id: isUserExist.id,
@@ -38,6 +42,8 @@ export const Auth = async (req: Request, res: Response) => {
             header: { alg: "HS256", typ: "JWT" },
           }
         );
+      console.log("token made", token);
+
         // res.cookie("token", token, {
         //   httpOnly: true,
         //   sameSite: "none",
