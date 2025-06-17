@@ -51,15 +51,15 @@ export const Auth = async (req: Request, res: Response) => {
       } else {
         res.status(400).json({
           status: false,
-          message: "Failed to authenticate user",
-          detail: "Password does not exist",
+          message: "Failed to authenticate user, Password is wrong",
+          detail: "Password is wrong",
         });
       }
     } else {
       res.status(400).json({
         status: false,
-        message: "Failed to authenticate user",
-        detail: "UserName does not exist",
+        message: "Failed to authenticate user, User does not exist",
+        detail: "User does not exist",
       });
     }
   } else {

@@ -17,12 +17,19 @@ export const SeedUsers = async (req: Request, res: Response) => {
     };
     const encryptedPassword = await bcrypt.hash(parentUser.password, 10);
     const branchData = [
-      { name: "branch 1", location: "Camiño Real 3, Zeberio" },
       {
-        name: "branch 2",
+        name: "manchester branch",
+        location:
+          "65 Great Stone Rd., Old Trafford, Stretford, Manchester M32 8GR",
+      },
+      {
+        name: "Del Segura branch",
         location: "Av. Zumalakarregi 29, Guardamar Del Segura",
       },
-      { name: "branch 3", location: "Eusebio Dávila 88, Constantina" },
+      {
+        name: "birmingham branch",
+        location: "22 Waterfront Walk, Birmingham B1 1SN",
+      },
     ];
     try {
       const [userCreation, branchCreation] = await prisma.$transaction([
@@ -31,7 +38,7 @@ export const SeedUsers = async (req: Request, res: Response) => {
             fullname: parentUser.fullname,
             username: parentUser.userName,
             password: encryptedPassword,
-            role: "Manager",
+            role: "manager",
           },
         }),
         prisma.branch.createMany({

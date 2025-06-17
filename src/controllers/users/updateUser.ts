@@ -7,9 +7,7 @@ const schema = z.object({
   userName: z.string().min(1, "User name is Required"),
   password: z.string().optional(),
   branchId: z.uuid().optional(),
-  role: z.enum(["Manager", "Admin", "chef"], {
-    error: "role must be manager, admin, chef",
-  }),
+  role: z.string().min(1, "password is Required"),
 });
 
 export const UpdateUsers = async (req: Request, res: Response) => {
@@ -37,7 +35,7 @@ export const UpdateUsers = async (req: Request, res: Response) => {
                 : isUserExist.password,
             role: req.body.role,
             branchId:
-              req.body.role == "Manager" ? null : req.body.branchId || null,
+              req.body.role == "manager" ? null : req.body.branchId || null,
           },
           where: {
             id: uid,

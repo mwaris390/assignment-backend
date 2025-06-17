@@ -12,17 +12,11 @@ model User {
   fullname  String
   username  String   @unique
   password  String
-  role      Role
+  role      String
   branchId  String? // Optional foreign key
   branch    Branch?  @relation(fields: [branchId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-enum Role {
-  Manager
-  Admin
-  chef
 }
 
 model Branch {
